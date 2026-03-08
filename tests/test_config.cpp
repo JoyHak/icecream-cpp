@@ -11,7 +11,7 @@
 #endif
 
 #define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 
 TEST_CASE("Hereditary")
@@ -65,3 +65,4 @@ TEST_CASE("Configure")
     }
     REQUIRE(IC_CONFIG.is_enabled());
 }
+

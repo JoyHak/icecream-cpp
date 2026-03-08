@@ -13,7 +13,7 @@
 #include <vector>
 
 #define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 
 struct FmtFormatAs
@@ -147,3 +147,4 @@ TEST_CASE("fmt lib")
         REQUIRE(str == "ic| v0: 5\n");
     }
 }
+

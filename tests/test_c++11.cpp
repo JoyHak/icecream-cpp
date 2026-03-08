@@ -23,8 +23,7 @@
 #include <utility>
 #include <vector>
 
-#define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 
 // -------------------------------------------------- Utilities
@@ -242,8 +241,8 @@ TEST_CASE("base")
         auto str = std::string{};
 
         test_empty_ic(str);
-        REQUIRE_THAT(str, Catch::StartsWith("ic| test_c++11.cpp:36 in"));
-        REQUIRE_THAT(str, Catch::Contains("test_empty_ic("));
+        REQUIRE_THAT(str, Catch::Matchers::StartsWith("ic| test_c++11.cpp:35 in"));
+        REQUIRE_THAT(str, Catch::Matchers::ContainsSubstring("test_empty_ic("));
     }
 
     {
@@ -735,7 +734,7 @@ TEST_CASE("pointer_like")
 
         auto v0 = std::unique_ptr<int> {new int {10}};
         IC(v0);
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
     }
 
     {
@@ -745,7 +744,7 @@ TEST_CASE("pointer_like")
 
         auto v0 = std::make_shared<int>(7);
         IC(v0);
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
     }
 
     {
@@ -755,7 +754,7 @@ TEST_CASE("pointer_like")
 
         auto v0 = boost::make_shared<int>(33);
         IC(v0);
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
     }
 
     {
@@ -765,7 +764,7 @@ TEST_CASE("pointer_like")
 
         boost::scoped_ptr<int> v0 {new int {33}};
         IC(v0);
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
     }
 
     {
@@ -775,7 +774,7 @@ TEST_CASE("pointer_like")
 
         int* v0 = new int {40};
         IC(v0);
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
         delete v0;
     }
 
@@ -789,7 +788,7 @@ TEST_CASE("pointer_like")
       #if !defined(__APPLE__) && defined(_LIBCPP_VERSION)
         REQUIRE(str == "ic| v0: (nil)\n");
       #else
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*0+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*0+\n"));
       #endif
     }
 
@@ -803,7 +802,7 @@ TEST_CASE("pointer_like")
       #if !defined(__APPLE__) && defined(_LIBCPP_VERSION)
         REQUIRE(str == "ic| v0: (nil)\n");
       #else
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*0+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*0+\n"));
       #endif
     }
 
@@ -815,7 +814,7 @@ TEST_CASE("pointer_like")
         auto v0 = std::make_shared<int>(7);
         auto v1 = std::weak_ptr<int> {v0};
         IC(v1);
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v1: (0x)*[0-9a-fA-F]+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v1: (0x)*[0-9a-fA-F]+\n"));
 
         str.clear();
 
@@ -989,11 +988,11 @@ TEST_CASE("exception")
             e << StringInfo {"bla_string"};
             IC(e);
             REQUIRE_THAT(str,
-                Catch::Contains("IntTag")
-                && Catch::Contains("] = 10")
-                && Catch::Contains("StringTag")
-                && Catch::Contains("] = bla_string")
-                && Catch::Contains("e: what info")
+                Catch::Matchers::ContainsSubstring("IntTag")
+                && Catch::Matchers::ContainsSubstring("] = 10")
+                && Catch::Matchers::ContainsSubstring("StringTag")
+                && Catch::Matchers::ContainsSubstring("] = bla_string")
+                && Catch::Matchers::ContainsSubstring("e: what info")
             );
         }
     }
@@ -1215,3 +1214,4 @@ TEST_CASE("output transcoding")
         REQUIRE(str == "ic| v0: 12345\n|");
     }
 }
+

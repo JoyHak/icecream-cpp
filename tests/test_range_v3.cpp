@@ -10,7 +10,7 @@
 #include "icecream.hpp"
 
 #define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 
 TEST_CASE("ranges view")
@@ -232,3 +232,4 @@ TEST_CASE("ranges view erros")
         REQUIRE(str == "ic| v[0]: \"<partial views supports only non-negative slice indexes>\"\n");
     }
 }
+
