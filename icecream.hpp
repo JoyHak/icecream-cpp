@@ -71,7 +71,7 @@
     #pragma warning(disable: 4127 4355 4514 4623 4626 4820 4866 4868 5027 5045 4582 4583)
 #endif
 
-#if (!defined(__APPLE__) && (!defined(_LIBCPP_VERSION) || _LIBCPP_VERSION >= 15000))
+#if (!defined(__APPLE__) && (!defined(_LIBCPP_VERSION) || _LIBCPP_VERSION >= 15000)) && !defined(__MINGW32__) && !defined(__MINGW64__)
     #define ICECREAM_UCHAR_HEADER
     #include <uchar.h>
 #endif
