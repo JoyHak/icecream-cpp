@@ -1,14 +1,15 @@
 # DEV_HASH: $Format:%H$
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.28)
 cmake_policy(SET CMP0048 NEW)
 
-project(icecream-cpp VERSION 1.0.0 LANGUAGES CXX)
+project(icecream-cpp VERSION 1.0.1 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 23)
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
-option(BUILD_TESTING "If ON the tests will be enabled" OFF)
+option(BUILD_TESTING "If ON the tests will be enabled" ON)
 include(CTest)
 
 add_library(icecream-cpp INTERFACE)
@@ -46,3 +47,5 @@ install(
 if(BUILD_TESTING)
   add_subdirectory(tests)
 endif()
+
+add_executable(main main.cpp)
