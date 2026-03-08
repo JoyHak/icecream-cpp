@@ -5009,7 +5009,13 @@ namespace detail {
             auto const& arg_name = std::get<0>(*it);
             auto const& tree = std::get<1>(*it);
 
-            result += arg_name.to_string() + ": " + tree.print();
+            auto name  = arg_name.to_string();
+            auto value = tree.print();
+            if (name == value) {
+                result += value;
+            } else {
+                result += name + ": " + value;
+            }
 
             if (it+1 != forest.end())
             {
