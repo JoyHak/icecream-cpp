@@ -3,11 +3,7 @@
 #endif
 
 #include "icecream.hpp"
-
-#include <string>
-
-#define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 
 TEST_CASE("character")
@@ -314,7 +310,7 @@ TEST_CASE("c_string")
         IC_CONFIG.show_c_string(false);
         char const* const v0 = "string 5";
         IC(v0);
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
     }
 
     {
@@ -345,7 +341,7 @@ TEST_CASE("c_string")
         IC_CONFIG.show_c_string(false);
         char16_t const* v0 = u"char16_t test";
         IC(v0);
-        REQUIRE_THAT(str, Catch::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
+        REQUIRE_THAT(str, Catch::Matchers::Matches("ic\\| v0: (0x)*[0-9a-fA-F]+\n"));
     }
 
     {
@@ -400,3 +396,4 @@ TEST_CASE("transcode functions")
         REQUIRE(str == "ic| v0: qux\n");
     }
 }
+

@@ -8,7 +8,7 @@
 #include <string_view>
 
 #define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 
 TEST_CASE("std_string_view")
@@ -116,3 +116,4 @@ TEST_CASE("transcode functions")
         REQUIRE(str == "ic| v0: \"qux\"\n");
     }
 }
+

@@ -12,7 +12,7 @@
 #endif
 
 #define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 
 auto operator<<(std::ostream& os, std::optional<MyClass> const& value) -> std::ostream&
@@ -135,3 +135,4 @@ TEST_CASE("output transcoding")
         REQUIRE(str == "ic| v0: 3.14\n;");
     }
 }
+
